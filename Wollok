@@ -1,0 +1,44 @@
+class Ave{
+	var property energia = 40
+	var property ubicacion = casa
+	var kilometro = casa.kilometro()
+	const property ruta9 = #{casa, ypf, plaza, casaamigo}
+	
+	method volarA(km){
+		energia = energia - km.kilometro() - 10
+		ubicacion = km
+		kilometro = km.kilometro()
+		console.println("vole a " + km + " y tengo " + energia + " de energia")
+	}
+	
+	method puedovolarA(nuevolugar){
+		var distanciaavolar = kilometro - nuevolugar.kilometro()
+		const a = {n => n.abs()}.apply(distanciaavolar)
+		distanciaavolar = a
+		const energiaagastar = energia - distanciaavolar - 10
+		if (energia > energiaagastar){
+			return "chi puedo volar hasta alla"
+		} else return "ño puedo volar hasta alla"
+	}
+	
+	method comer(gr){
+		energia = energia + 4*gr
+		console.println("comi " + gr + " gramos y tengo " + energia + " de energia")
+	}
+}
+
+const pepita = new Ave()
+
+
+object casa{
+	var property kilometro = 1
+}
+object ypf{
+	var property kilometro = 5
+}
+object plaza{
+	var property kilometro = 2
+}
+object casaamigo{
+	var property kilometro = 9
+}
