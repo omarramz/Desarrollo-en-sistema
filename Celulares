@@ -1,0 +1,111 @@
+class Persona{
+	var property celu = null
+	var property compania = null
+	
+	method micelu(marca){
+		celu = marca
+		marca.asignarduenio(self)
+	}
+	method micompania(comp){
+		compania = comp
+		comp.asignarusuario(self)
+		comp.asignarcelular(celu)
+	}
+	
+	
+	method llamarA(nombre, duracion){
+		if(celu.bateria() > 0){
+			if(nombre.celu().bateria() > 0){
+			nombre.celu().llamada(duracion)
+			celu.llamada(duracion)
+			} else "no tiene bateria a quien quiere llamar"
+		} else "no tenes bateria"
+	}
+}
+
+object juliana inherits Persona{}
+object catalina inherits Persona{}
+
+class Celular{
+	var property duenio = null
+	var bateria = 5
+	var property compania = null
+	
+	method asignarduenio(nombre){
+		duenio = nombre
+	}
+	
+	method asignarcompania(comp){
+		compania = comp
+	}
+	
+	method cargarbateria(){
+		bateria = 5
+	}
+	
+	method bateria	(){
+		if(bateria == 0){
+			 return "Celular apagado"
+		}
+		return bateria
+	}
+	
+	method llamada(duracion){
+	}
+}
+
+object samsung inherits Celular{
+	override method llamada(duracion){
+		compania.cobro(duracion)
+		bateria -= 0.25
+	}
+}
+
+object iphone inherits Celular{
+	override method llamada(duracion){
+		compania.cobro(duracion)
+		bateria = bateria - (duracion*0.1)
+	}
+}
+
+class Compania{
+	var property usuario = null
+	var property celular = null
+	var property deuda = 0
+	var property cantidadminutos = 0
+	
+	method asignarusuario(nombre){
+		usuario = nombre
+	}
+	
+	method asignarcelular(celu){
+		celular = celu
+		celu.asignarcompania(self)
+	}
+	
+	method cobro(duracion){
+	}
+}
+
+object movistar inherits Compania{
+	override method cobro(duracion){
+		deuda += 60*duracion
+		cantidadminutos += duracion
+	}
+}
+
+object personal inherits Compania (deuda = 70){
+	override method cobro(duracion){
+		if(cantidadminutos > 10){
+			deuda += 60*duracion
+			cantidadminutos += duracion
+		} else cantidadminutos += duracion
+	}
+}
+
+object claro inherits Compania{
+	override method cobro(duracion){
+		deuda += 50*1.21
+		cantidadminutos += duracion
+	}
+}
