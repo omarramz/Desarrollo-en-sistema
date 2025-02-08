@@ -1,0 +1,38 @@
+class Gato{
+	var property energia = 42
+	var property velocidad = 5 + (energia/10)
+	var property posicion
+	var property distanciaraton = null
+	
+	method correr(metros){
+		energia -= (0.5*metros)
+	}
+	
+	method comer(){
+		energia += (12 + raton.peso())
+	}
+	
+	method comerraton(){
+		posicion = raton.posicion()
+		self.correr(distanciaraton)
+		self.comer()
+		return "puto comido"
+	}
+
+	method meconvienecomerraton(){
+		distanciaraton = raton.posicion() - posicion
+		const dr = {n => n.abs()}.apply(distanciaraton)
+		distanciaraton = dr
+		const energiaaganar = energia + (12 + raton.peso())
+		const energiaaperder = energia - (0.5*distanciaraton)
+		if(energiaaganar > energiaaperder){
+			return console.println ("True")
+		}
+		return console.println ("False")
+	}
+}
+
+object raton{
+	var property peso = 18
+	var property posicion = 9
+}
