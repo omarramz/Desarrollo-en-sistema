@@ -1,0 +1,31 @@
+const biblioteca = #{informatica, filosofia, matematicas, derecho, economia}
+
+class Libro{
+	var property capitulos
+	var alquiler = null
+}
+
+object informatica inherits Libro(capitulos = 6, alquiler = 2){
+	method alquiler(){return alquiler}
+}
+
+object filosofia inherits Libro(capitulos = 12, alquiler = 2){
+	method alquiler(){return alquiler}
+}
+
+object matematicas inherits Libro(capitulos = 2){
+	method alquiler(){if(capitulos>1){
+		alquiler = 3
+		return alquiler
+	} 	alquiler = 1
+		return alquiler
+	}
+}
+
+object derecho inherits Libro(capitulos = 9, alquiler = 5){
+	method alquiler(){return alquiler}
+}
+
+object economia inherits Libro(capitulos = 9, alquiler = 5){
+	method alquiler(){return alquiler}
+}
